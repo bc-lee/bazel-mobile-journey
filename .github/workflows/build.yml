@@ -1,0 +1,59 @@
+name: Build
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        bazel-version: ["default"]
+        experimental: [false]
+        include:
+          - bazel-version: "7.x"
+            experimental: true
+          - bazel-version: "latest"
+            experimental: false
+          - bazel-version: "last_rc"
+            experimental: true
+          - bazel-version: "rolling"
+            experimental: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check bazel version
+        id: check-bazel-version
+        run: |
+          set -e
+          # latest or last_rc might be same as default. In this case we don't need to build at all.
+          if [[ "${{ matrix.bazel-version }}" != "latest" && "${{ matrix.bazel-version }}" != "last_rc" ]]; then
+            echo "do=1" >> "$GITHUB_OUTPUT"
+            # "default" is not a valid version
+            if [[ "${{ matrix.bazel-version }}" != "default" ]]; then
+              echo "USE_BAZEL_VERSION=${{ matrix.bazel-version }}" >> "$GITHUB_ENV"
+            fi
+            exit 0
+          fi
+
+          # Don't run if the version is the same as the default version
+          default_version=$(cat .bazelversion)
+          version=$(tools/bazel_version.py ${{ matrix.bazel-version }})
+          if [[ "$default_version" == "$version" ]]; then
+            echo "do=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "Use Bazel version $version"
+            echo "do=1" >> "$GITHUB_OUTPUT"
+            echo "USE_BAZEL_VERSION=${{ matrix.bazel-version }}" >> "$GITHUB_ENV"
+          fi
+      - name: Set up Bazel
+        uses: bazel-contrib/setup-bazel@0.14.0
+        if: ${{ steps.check-bazel-version.outputs.do == '1' }}
+        with:
+          disk-cache: ${{ github.workflow }}-bazel-disk-cache-${{ matrix.bazel-version }}
+      - name: Build
+        if: ${{ steps.check-bazel-version.outputs.do == '1' }}
+        run: |
+          bazelisk build //...
