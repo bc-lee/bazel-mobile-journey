@@ -5,6 +5,10 @@ on:
   pull_request:
     branches: [master]
   workflow_dispatch:
+# Cancel in-progress builds if the same workflow is triggered again.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     strategy:

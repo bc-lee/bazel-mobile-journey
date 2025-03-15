@@ -2,6 +2,10 @@ name: Format Check
 on:
   pull_request:
     branches: ["master"]
+# Cancel in-progress builds if the same workflow is triggered again.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   format-check:
     runs-on: ubuntu-latest
