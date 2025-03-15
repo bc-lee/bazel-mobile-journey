@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "description": "Do not update pre-commit unless major version",
+      "matchPackageNames": [
+        "pre-commit"
+      ],
+      "enabled": false,
+      "updateTypes": [
+        "minor",
+        "patch"
+      ]
+    }
+  ]
+}
