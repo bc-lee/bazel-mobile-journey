@@ -1,0 +1,46 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-yaml
+        exclude: ^.clang-format$
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.16.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://github.com/google/yapf
+    rev: v0.43.0
+    hooks:
+      - id: yapf
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: clang-format
+        'types_or': [c, c++, objective-c, objective-c++, json]
+        entry: tools/pre-commit/run-clang-format.py
+        language: python
+        additional_dependencies: ["requests"]
+        require_serial: true # Only run one instance of clang-format at a time
+      - id: google-java-format
+        name: google-java-format
+        types: [java]
+        entry: tools/pre-commit/run-google-java-format.py
+        language: python
+        additional_dependencies: ["requests"]
+        require_serial: true # Only run one instance of google-java-format at a time
+      - id: ktfmt
+        name: ktfmt
+        types: [kotlin]
+        entry: tools/pre-commit/run-ktfmt.py
+        language: python
+        additional_dependencies: ["requests"]
+        require_serial: true # Only run one instance of ktfmt at a time
+      - id: buildifier
+        name: buildifier
+        types: [bazel]
+        entry: tools/pre-commit/run-buildifier.py
+        language: system
+        require_serial: true # Only run one instance of buildifier at a time

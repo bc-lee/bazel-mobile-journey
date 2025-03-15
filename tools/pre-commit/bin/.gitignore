@@ -1,0 +1,4 @@
+clang-format
+buildifier
+*.jar
+*.version
