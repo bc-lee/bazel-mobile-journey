@@ -1,0 +1,79 @@
+name: Format Check
+on:
+  pull_request:
+    branches: ["master"]
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check if we need to check all files
+        id: check-all-files
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            // Files that would trigger a full format check
+            const formatRelatedPaths = [
+              '.pre-commit-config.yaml',
+              '.clang-format',
+              '.style.yapf',
+              'tools/pre-commit/run-clang-format.py',
+              'tools/pre-commit/run-google-java-format.py',
+              'tools/pre-commit/run-ktfmt.py',
+              'tools/pre-commit/run-buildifier.py'
+            ];
+
+            // Ensure we have all files in the pull request to not to forgot
+            // to update the list of files to check.
+            for (const file of formatRelatedPaths) {
+              if (!fs.existsSync(file)) {
+                core.setFailed(`File ${file} does not exist. Please update the list of files to check.`);
+                process.exit(1);
+              }
+            }
+
+            // Get all files in the pull request.
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+
+            const hasFormatChanges = files.some(file =>
+              formatRelatedPaths.includes(file.filename)
+            );
+
+            core.debug(`hasFormatChanges: ${hasFormatChanges}`);
+            core.setOutput('should-check-all', hasFormatChanges ? '1' : '0');
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: 'stable'
+          cache: false
+      - name: Install dependencies
+        run: |
+          pip install -r requirements-dev.txt
+      - name: Run pre-commit checks
+        run: |
+          args=''
+          if [[ ${{ steps.check-all-files.outputs.should-check-all }} == '1' ]]; then
+            args='--all-files'
+          else
+            # We only want to check the files that have been modified. Check it by using the
+            args="--from-ref origin/$GITHUB_BASE_REF --to-ref HEAD"
+          fi
+
+          pre-commit run ${args}
