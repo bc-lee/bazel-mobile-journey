@@ -61,3 +61,7 @@ jobs:
         if: ${{ steps.check-bazel-version.outputs.do == '1' }}
         run: |
           bazelisk build //...
+      - name: Ensure nothing changed
+        if: ${{ matrix.bazel_version == 'default' }}
+        run: |
+          git diff --stat --exit-code
