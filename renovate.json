@@ -10,7 +10,7 @@
         "pre-commit"
       ],
       "enabled": false,
-      "updateTypes": [
+      "matchUpdateTypes": [
         "minor",
         "patch"
       ]
