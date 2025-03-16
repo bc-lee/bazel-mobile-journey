@@ -2,7 +2,7 @@ load("@rules_android//android:rules.bzl", "android_binary")
 load("@rules_kotlin//kotlin:android.bzl", "kt_android_library")
 
 kt_android_library(
-    name = "simple_kotlin_app_lib",
+    name = "kotlin_app_lib",
     srcs = glob(["src/main/kotlin/**/*.kt"]),
     manifest = "src/main/AndroidManifest.xml",
     resource_files = glob(["src/main/res/**"]),
@@ -10,9 +10,9 @@ kt_android_library(
 )
 
 android_binary(
-    name = "simple_kotlin_app",
+    name = "kotlin_app",
     custom_package = "com.example.simple",
     manifest = "src/main/AndroidManifest.xml",
     resource_files = glob(["src/main/res/**"]),
-    deps = [":simple_kotlin_app_lib"],
+    deps = [":kotlin_app_lib"],
 )
