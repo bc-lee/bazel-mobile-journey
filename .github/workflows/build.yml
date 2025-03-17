@@ -62,6 +62,10 @@ jobs:
         if: ${{ steps.check-bazel-version.outputs.do == '1' }}
         run: |
           bazelisk build //...
+      - name: Re-pin
+        if: ${{ matrix.bazel-version == 'default' }}
+        run: |
+          REPIN=1 bazel run @android_deps//:pin
       - name: Ensure nothing changed
         if: ${{ matrix.bazel-version == 'default' }}
         run: |
