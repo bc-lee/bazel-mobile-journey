@@ -63,6 +63,6 @@ jobs:
         run: |
           bazelisk build //...
       - name: Ensure nothing changed
-        if: ${{ matrix.bazel_version == 'default' }}
+        if: ${{ matrix.bazel-version == 'default' }}
         run: |
           git diff --stat --exit-code
