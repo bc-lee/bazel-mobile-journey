@@ -65,7 +65,7 @@ jobs:
       - name: Re-pin
         if: ${{ matrix.bazel-version == 'default' }}
         run: |
-          REPIN=1 bazel run @android_deps//:pin
+          REPIN=1 bazelisk run @android_deps//:pin
       - name: Ensure nothing changed
         if: ${{ matrix.bazel-version == 'default' }}
         run: |
