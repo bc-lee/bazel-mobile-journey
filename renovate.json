@@ -6,6 +6,9 @@
   "packageRules": [
     {
       "description": "Do not update pre-commit unless major version",
+      "matchDatasources": [
+        "pypi"
+      ],
       "matchPackageNames": [
         "pre-commit"
       ],
@@ -14,6 +17,16 @@
         "minor",
         "patch"
       ]
+    },
+    {
+      "description": "Group androidx.lifecycle* updates",
+      "matchDatasources": [
+        "maven"
+      ],
+      "matchPackageNames": [
+        "androidx.lifecycle:*"
+      ],
+      "groupName": "androidx.lifecycle"
     }
   ]
 }
