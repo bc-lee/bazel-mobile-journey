@@ -11,7 +11,7 @@ kt_android_library(
 
 android_binary(
     name = "kotlin_app",
-    custom_package = "com.example.simple",
+    custom_package = "com.example.sample",
     manifest = "src/main/AndroidManifest.xml",
     resource_files = glob(["src/main/res/**"]),
     deps = [":kotlin_app_lib"],
