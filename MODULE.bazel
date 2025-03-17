@@ -32,6 +32,12 @@ git_override(
     remote = "https://github.com/bc-lee/rules_kotlin",
 )
 
+git_override(
+    module_name = "rules_jvm_external",
+    commit = "9305c1c28aa6df1dab31a9d6e5a119996d467d3e",
+    remote = "https://github.com/bc-lee/rules_jvm_external",
+)
+
 # Load the android_extensions to provide remote android tools
 remote_android_extensions = use_extension(
     "@rules_android//bzlmod_extensions:android_extensions.bzl",
