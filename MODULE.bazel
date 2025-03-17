@@ -6,11 +6,26 @@ module(
     name = "bazel_mobile_journey",
 )
 
-bazel_dep(name = "rules_java", version = "8.11.0")
-bazel_dep(name = "bazel_skylib", version = "1.7.1")
-bazel_dep(name = "rules_jvm_external", version = "6.7")
-bazel_dep(name = "rules_android", version = "0.6.3")
-bazel_dep(name = "rules_kotlin", version = "2.1.0")
+bazel_dep(
+    name = "rules_java",
+    version = "8.11.0",
+)
+bazel_dep(
+    name = "bazel_skylib",
+    version = "1.7.1",
+)
+bazel_dep(
+    name = "rules_jvm_external",
+    version = "6.7",
+)
+bazel_dep(
+    name = "rules_android",
+    version = "0.6.3",
+)
+bazel_dep(
+    name = "rules_kotlin",
+    version = "2.1.0",
+)
 git_override(
     module_name = "rules_kotlin",
     commit = "c747d0631353b4a96a52fe22f6db34d379dd1acf",
@@ -41,6 +56,7 @@ maven.install(
         "androidx.lifecycle:lifecycle-common:2.6.2",
         "androidx.lifecycle:lifecycle-runtime:2.6.2",
     ],
+    lock_file = "//:maven_install.json",
     repositories = [
         "https://maven.google.com",
         "https://repo1.maven.org/maven2",
