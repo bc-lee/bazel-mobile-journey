@@ -26,6 +26,24 @@ bazel_dep(
     name = "rules_kotlin",
     version = "2.1.0",
 )
+bazel_dep(
+    name = "rules_apple",
+    version = "3.20.1",
+)
+bazel_dep(
+    name = "rules_swift",
+    version = "2.7.0",
+)
+bazel_dep(
+    name = "platforms",
+    version = "0.0.11",
+)
+bazel_dep(
+    name = "apple_support",
+    version = "1.20.0",
+    repo_name = "build_bazel_apple_support",
+)
+
 git_override(
     module_name = "rules_kotlin",
     commit = "b563b5786829b2d36304e52a411376c144c7b08b",
