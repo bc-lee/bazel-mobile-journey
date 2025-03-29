@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   format-check:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,7 +28,8 @@ jobs:
               'tools/pre-commit/run-clang-format.py',
               'tools/pre-commit/run-google-java-format.py',
               'tools/pre-commit/run-ktfmt.py',
-              'tools/pre-commit/run-buildifier.py'
+              'tools/pre-commit/run-buildifier.py',
+              'tools/pre-commit/run-swift-format.py'
             ];
 
             // Ensure we have all files in the pull request to not to forgot
@@ -53,6 +54,10 @@ jobs:
 
             core.debug(`hasFormatChanges: ${hasFormatChanges}`);
             core.setOutput('should-check-all', hasFormatChanges ? '1' : '0');
+      - name: Set up Xcode stable
+        uses: maxim-lobanov/setup-xcode@7f352e61cbe8130c957c3bc898c4fb025784ea1e
+        with:
+          xcode-version: latest-stable
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
