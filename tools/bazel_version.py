@@ -32,7 +32,7 @@ import re
 import sys
 import time
 from contextlib import closing
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 
 ONE_HOUR = 60 * 60  # one hour in seconds
 
@@ -138,7 +138,15 @@ def get_bazelisk_directory():
 
 
 def read_remote_text_file(url):
-  with closing(urlopen(url)) as res:
+  headers = {}
+
+  # Add GitHub token if available
+  github_token = os.environ.get("BAZELISK_GITHUB_TOKEN")
+  if github_token and "github.com" in url:
+    headers["Authorization"] = f"token {github_token}"
+
+  req = urlopen(Request(url, headers=headers))
+  with closing(req) as res:
     body = res.read()
     try:
       return body.decode(res.info().get_content_charset("iso-8859-1"))
