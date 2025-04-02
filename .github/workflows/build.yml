@@ -138,4 +138,6 @@ jobs:
       - name: Ensure we have an app
         if: ${{ steps.check-bazel-version.outputs.do == '1' }}
         run: |
-          find bazel-out/ -name "*.app" | grep -E ".app"
+          set -ex
+          find bazel-out/ -name "SimpleSwiftApp*"
+          find bazel-out/ -name "*.app" | grep -E ".app" || (echo "No app found" && exit 1)
