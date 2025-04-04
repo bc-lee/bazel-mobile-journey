@@ -134,7 +134,7 @@ jobs:
       - name: Build
         if: ${{ steps.check-bazel-version.outputs.do == '1' }}
         run: |
-          bazelisk build //ios/... --apple_platform_type=ios
+          bazelisk build //ios/... --apple_platform_type=ios --platforms=@build_bazel_apple_support//platforms:ios_sim_arm64
       - name: Ensure we have an app
         if: ${{ steps.check-bazel-version.outputs.do == '1' }}
         run: |
