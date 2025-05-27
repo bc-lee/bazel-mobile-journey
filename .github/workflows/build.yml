@@ -56,7 +56,7 @@ jobs:
             echo "USE_BAZEL_VERSION=${{ matrix.bazel-version }}" >> "$GITHUB_ENV"
           fi
       - name: Set up Bazel
-        uses: bazel-contrib/setup-bazel@0.14.0
+        uses: bazel-contrib/setup-bazel@0.15.0
         if: ${{ steps.check-bazel-version.outputs.do == '1' }}
         env:
           BAZELISK_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -125,7 +125,7 @@ jobs:
         with:
           xcode-version: latest-stable
       - name: Set up Bazel
-        uses: bazel-contrib/setup-bazel@0.14.0
+        uses: bazel-contrib/setup-bazel@0.15.0
         if: ${{ steps.check-bazel-version.outputs.do == '1' }}
         env:
           BAZELISK_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
