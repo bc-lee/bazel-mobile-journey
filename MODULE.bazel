@@ -77,8 +77,8 @@ maven.install(
         "androidx.annotation:annotation:1.9.1",
         "androidx.appcompat:appcompat:1.7.0",
         "androidx.emoji2:emoji2:1.5.0",
-        "androidx.lifecycle:lifecycle-common:2.8.7",
-        "androidx.lifecycle:lifecycle-runtime:2.8.7",
+        "androidx.lifecycle:lifecycle-common:2.9.1",
+        "androidx.lifecycle:lifecycle-runtime:2.9.1",
     ],
     lock_file = "//:maven_install.json",
     repositories = [
