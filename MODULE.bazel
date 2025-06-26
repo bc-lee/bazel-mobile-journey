@@ -20,7 +20,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_android",
-    version = "0.6.3",
+    version = "0.6.5",
 )
 bazel_dep(
     name = "rules_kotlin",
