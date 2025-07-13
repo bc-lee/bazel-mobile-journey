@@ -20,11 +20,11 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_android",
-    version = "0.6.3",
+    version = "0.6.5",
 )
 bazel_dep(
     name = "rules_kotlin",
-    version = "2.1.0",
+    version = "2.1.8",
 )
 bazel_dep(
     name = "rules_apple",
@@ -45,9 +45,9 @@ bazel_dep(
 )
 
 git_override(
-    module_name = "rules_kotlin",
-    commit = "b563b5786829b2d36304e52a411376c144c7b08b",
-    remote = "https://github.com/bazelbuild/rules_kotlin",
+    module_name = "rules_android",
+    commit = "d844c29196708a093985093de9ada35763c53049",
+    remote = "https://github.com/bc-lee/rules_android",
 )
 
 git_override(
@@ -61,7 +61,7 @@ remote_android_extensions = use_extension(
     "@rules_android//bzlmod_extensions:android_extensions.bzl",
     "remote_android_tools_extensions",
 )
-use_repo(remote_android_extensions, "android_gmaven_r8", "android_tools")
+use_repo(remote_android_extensions, "android_tools")
 
 # Load the android_sdk_repository_extension to manage the Android SDK
 android_sdk_repository_extension = use_extension("@rules_android//rules/android_sdk_repository:rule.bzl", "android_sdk_repository_extension")
