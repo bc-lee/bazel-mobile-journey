@@ -32,7 +32,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_swift",
-    version = "2.9.0",
+    version = "3.1.0",
 )
 bazel_dep(
     name = "platforms",
