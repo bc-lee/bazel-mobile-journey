@@ -1,4 +1,4 @@
-package com.example.sample
+package com.example.kotlinapp
 
 import android.app.Activity
 import android.os.Bundle

@@ -3,7 +3,7 @@ load("@rules_android//android:rules.bzl", "android_binary", "android_library")
 android_library(
     name = "app_with_dependencies_lib",
     srcs = glob(["src/main/java/**/*.java"]),
-    custom_package = "com.example.sample",
+    custom_package = "com.example.appwithdependencies",
     manifest = "src/main/AndroidManifest.xml",
     resource_files = glob(["src/main/res/**"]),
     visibility = ["//visibility:private"],
@@ -18,7 +18,7 @@ android_library(
 
 android_binary(
     name = "app_with_dependencies",
-    custom_package = "com.example.sample",
+    custom_package = "com.example.appwithdependencies",
     manifest = "src/main/AndroidManifest.xml",
     resource_files = glob(["src/main/res/**"]),
     deps = [":app_with_dependencies_lib"],

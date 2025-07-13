@@ -1,9 +1,9 @@
-package com.example.sample;
+package com.example.simpleapp;
 
+import android.app.Activity;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

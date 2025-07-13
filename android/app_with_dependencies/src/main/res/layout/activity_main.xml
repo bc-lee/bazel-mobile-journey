@@ -7,5 +7,5 @@
     <TextView android:id="@+id/text"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Hello, Simple Android App" />
+              android:text="Hello, Android App with Dependencies" />
 </LinearLayout>
