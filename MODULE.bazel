@@ -56,6 +56,12 @@ git_override(
     remote = "https://github.com/bc-lee/rules_jvm_external",
 )
 
+git_override(
+    module_name = "rules_apple",
+    commit = "56317c677547f7a5babe0777c8db8ab639ed11cb",
+    remote = "https://github.com/bazelbuild/rules_apple",
+)
+
 # Load the android_extensions to provide remote android tools
 remote_android_extensions = use_extension(
     "@rules_android//bzlmod_extensions:android_extensions.bzl",
