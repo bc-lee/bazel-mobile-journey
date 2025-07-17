@@ -58,7 +58,7 @@ git_override(
 
 git_override(
     module_name = "rules_apple",
-    commit = "56317c677547f7a5babe0777c8db8ab639ed11cb",
+    commit = "9b2f083820ab7a0ed860048dd9e0a70f97fc6760",
     remote = "https://github.com/bazelbuild/rules_apple",
 )
 
