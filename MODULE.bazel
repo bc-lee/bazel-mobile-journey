@@ -44,6 +44,14 @@ bazel_dep(
     repo_name = "build_bazel_apple_support",
 )
 
+# Not used directly, but required in certain configurations.
+# For example, after https://github.com/bazelbuild/bazel/commit/e6979d3f878ddd663f15a10b09407ecbb9380fee,
+# Bazel rolling (9.0.0-pre.20250714.1) will not work without this dependency.
+bazel_dep(
+    name = "rules_foreign_cc",
+    version = "0.15.0",
+)
+
 git_override(
     module_name = "rules_android",
     commit = "d844c29196708a093985093de9ada35763c53049",
