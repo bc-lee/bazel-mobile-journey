@@ -28,7 +28,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_apple",
-    version = "4.0.1",
+    version = "4.1.0",
 )
 bazel_dep(
     name = "rules_swift",
@@ -62,12 +62,6 @@ git_override(
     module_name = "rules_jvm_external",
     commit = "9305c1c28aa6df1dab31a9d6e5a119996d467d3e",
     remote = "https://github.com/bc-lee/rules_jvm_external",
-)
-
-git_override(
-    module_name = "rules_apple",
-    commit = "56317c677547f7a5babe0777c8db8ab639ed11cb",
-    remote = "https://github.com/bazelbuild/rules_apple",
 )
 
 # Load the android_extensions to provide remote android tools
