@@ -58,12 +58,6 @@ git_override(
     remote = "https://github.com/bc-lee/rules_android",
 )
 
-git_override(
-    module_name = "rules_jvm_external",
-    commit = "c5ec78008704a984349aa3d613b07a00c2fa8d5e",
-    remote = "https://github.com/bc-lee/rules_jvm_external",
-)
-
 # Load the android_extensions to provide remote android tools
 remote_android_extensions = use_extension(
     "@rules_android//bzlmod_extensions:android_extensions.bzl",
@@ -81,6 +75,7 @@ register_toolchains("@androidsdk//:sdk-toolchain", "@androidsdk//:all")
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     name = "android_deps",
+    aar_import_bzl_label = "@rules_android//android:rules.bzl",
     artifacts = [
         "androidx.annotation:annotation:1.9.1",
         "androidx.appcompat:appcompat:1.7.1",
@@ -93,6 +88,7 @@ maven.install(
         "https://maven.google.com",
         "https://repo1.maven.org/maven2",
     ],
+    use_starlark_android_rules = True,
     version_conflict_policy = "pinned",
 )
 use_repo(maven, "android_deps")
