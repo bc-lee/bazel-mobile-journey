@@ -16,7 +16,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_jvm_external",
-    version = "6.7",
+    version = "6.8",
 )
 bazel_dep(
     name = "rules_android",
@@ -60,7 +60,7 @@ git_override(
 
 git_override(
     module_name = "rules_jvm_external",
-    commit = "9305c1c28aa6df1dab31a9d6e5a119996d467d3e",
+    commit = "c5ec78008704a984349aa3d613b07a00c2fa8d5e",
     remote = "https://github.com/bc-lee/rules_jvm_external",
 )
 
