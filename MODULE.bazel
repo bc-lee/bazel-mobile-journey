@@ -54,8 +54,8 @@ bazel_dep(
 
 git_override(
     module_name = "rules_android",
-    commit = "d844c29196708a093985093de9ada35763c53049",
-    remote = "https://github.com/bc-lee/rules_android",
+    commit = "c9774d9d52bccc81df00b56f76ae7212c6d40c9e",
+    remote = "https://github.com/bazelbuild/rules_android",
 )
 
 # Load the android_extensions to provide remote android tools
