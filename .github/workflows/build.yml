@@ -5,6 +5,10 @@ on:
   pull_request:
     branches: [master]
   workflow_dispatch:
+# Required to allow the workflow to push commits back to PR branches
+permissions:
+  contents: write
+  pull-requests: write
 # Cancel in-progress builds if the same workflow is triggered again.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -29,6 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Check bazel version
         id: check-bazel-version
         env:
@@ -71,6 +77,33 @@ jobs:
         if: ${{ matrix.bazel-version == 'default' }}
         run: |
           REPIN=1 bazelisk run @android_deps//:pin
+      - name: Auto-commit MODULE.bazel.lock for same-repo PRs
+        if: ${{ matrix.bazel-version == 'default' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          # Only proceed if MODULE.bazel.lock changed
+          if git diff --quiet -- MODULE.bazel.lock; then
+            echo "No changes in MODULE.bazel.lock"
+            exit 0
+          fi
+
+          # Fail early if other files changed, and do not push
+          if git diff --name-only | grep -v '^MODULE\.bazel\.lock$' | grep -q .; then
+            echo "Other change detected"
+            exit 1
+          fi
+
+          git stash
+          git fetch origin ${{ github.head_ref }}:${{ github.head_ref }}
+          git checkout ${{ github.head_ref }}
+          git stash pop || (echo "Failed to pop stash, is PR branch too old?" && exit 1)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add MODULE.bazel.lock
+          git commit -m "chore: update MODULE.bazel.lock (auto-repin)"
+          git push origin HEAD:${{ github.head_ref }}
       - name: Ensure nothing changed
         if: ${{ matrix.bazel-version == 'default' }}
         run: |
