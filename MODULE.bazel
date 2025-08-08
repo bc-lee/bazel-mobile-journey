@@ -54,7 +54,7 @@ bazel_dep(
 
 git_override(
     module_name = "rules_android",
-    commit = "f13c66b0587bb94758b92e2a7fdf4e478320d8d7",
+    commit = "0e702385024a40e690add0cf36269222e9c2c1bf",
     remote = "https://github.com/bazelbuild/rules_android",
 )
 
