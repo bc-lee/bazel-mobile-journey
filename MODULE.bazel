@@ -20,7 +20,7 @@ bazel_dep(
 )
 bazel_dep(
     name = "rules_android",
-    version = "0.6.5",
+    version = "0.6.6",
 )
 bazel_dep(
     name = "rules_kotlin",
@@ -50,12 +50,6 @@ bazel_dep(
 bazel_dep(
     name = "rules_foreign_cc",
     version = "0.15.0",
-)
-
-git_override(
-    module_name = "rules_android",
-    commit = "f13c66b0587bb94758b92e2a7fdf4e478320d8d7",
-    remote = "https://github.com/bazelbuild/rules_android",
 )
 
 # Load the android_extensions to provide remote android tools
