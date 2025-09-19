@@ -68,7 +68,7 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: 'stable'
           cache: false
