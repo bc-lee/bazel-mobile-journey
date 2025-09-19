@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
       - name: Check if we need to check all files
         id: check-all-files
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
