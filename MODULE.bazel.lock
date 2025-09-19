@@ -153,8 +153,8 @@
     "https://bcr.bazel.build/modules/rules_java/7.3.2/MODULE.bazel": "50dece891cfdf1741ea230d001aa9c14398062f2b7c066470accace78e412bc2",
     "https://bcr.bazel.build/modules/rules_java/7.4.0/MODULE.bazel": "a592852f8a3dd539e82ee6542013bf2cadfc4c6946be8941e189d224500a8934",
     "https://bcr.bazel.build/modules/rules_java/7.6.1/MODULE.bazel": "2f14b7e8a1aa2f67ae92bc69d1ec0fa8d9f827c4e17ff5e5f02e91caa3b2d0fe",
-    "https://bcr.bazel.build/modules/rules_java/8.12.0/MODULE.bazel": "8e6590b961f2defdfc2811c089c75716cb2f06c8a4edeb9a8d85eaa64ee2a761",
     "https://bcr.bazel.build/modules/rules_java/8.13.0/MODULE.bazel": "0444ebf737d144cf2bb2ccb368e7f1cce735264285f2a3711785827c1686625e",
+    "https://bcr.bazel.build/modules/rules_java/8.14.0/MODULE.bazel": "717717ed40cc69994596a45aec6ea78135ea434b8402fb91b009b9151dd65615",
     "https://bcr.bazel.build/modules/rules_java/8.15.1/MODULE.bazel": "5071eebf0fd602ab0617f846e0e0d8f388d66c961513c736e0ac4a1dcde3ff2c",
     "https://bcr.bazel.build/modules/rules_java/8.15.1/source.json": "e48286d5819767bc5b3d457539ae7f94e28a9b3e55d092d5c47176cb6a2a289b",
     "https://bcr.bazel.build/modules/rules_java/8.3.2/MODULE.bazel": "7336d5511ad5af0b8615fdc7477535a2e4e723a357b6713af439fe8cf0195017",
@@ -297,7 +297,7 @@
     },
     "@@rules_android+//bzlmod_extensions:com_android_dex.bzl%com_android_dex_extension": {
       "general": {
-        "bzlTransitiveDigest": "aDSxoLkIA0GyiHP6VPgxLuAWEmulTMkYgxvB/P0Q42g=",
+        "bzlTransitiveDigest": "Rux2kPXUP93tJLEXkVk6q0CHomvsLAuRfqBNU8xddsY=",
         "usagesDigest": "toF8IFMu98H/VU2p1sfVC5fVXVYJunpbbmtM6tOsQXY=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -338,7 +338,7 @@
     },
     "@@rules_foreign_cc+//foreign_cc:extensions.bzl%tools": {
       "general": {
-        "bzlTransitiveDigest": "MW4A97mMGuraW70byeL5iUdP+6qprG8t1UShiMJdD8s=",
+        "bzlTransitiveDigest": "g6eqFMwHN2rVvQLs8u4iibhBwHiaS/K+PAC7pNBtkYI=",
         "usagesDigest": "PKJ/4yUmwmF/SjJ2HH9Xrp2gl5+NxehlhcdWxBLeWLI=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
@@ -678,7 +678,7 @@
     },
     "@@rules_kotlin+//src/main/starlark/core/repositories:bzlmod_setup.bzl%rules_kotlin_extensions": {
       "general": {
-        "bzlTransitiveDigest": "CgSFQ7VRhs6G8nojJKNB6szAhYnHEblrCU/AruTOxtw=",
+        "bzlTransitiveDigest": "vfLCTchDthU74iCKvoskQ+ovk2Wu2tLykbCddrcLy7U=",
         "usagesDigest": "QPppUlwb7NSBhcaYae+JZPqTEmJKCkOXKFPXQS7aAJE=",
         "recordedFileInputs": {},
         "recordedDirentsInputs": {},
