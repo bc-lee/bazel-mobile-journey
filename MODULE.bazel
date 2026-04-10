@@ -49,7 +49,7 @@ bazel_dep(
 # Bazel rolling (9.0.0-pre.20250714.1) will not work without this dependency.
 bazel_dep(
     name = "rules_foreign_cc",
-    version = "0.15.0",
+    version = "0.15.1",
 )
 
 # Load the android_extensions to provide remote android tools
